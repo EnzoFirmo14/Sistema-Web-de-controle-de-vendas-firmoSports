@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Batch": {
+      "title": "Lote de Pedidos",
+      "description": "Agrupamento de pedidos para envio ao fornecedor.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Nome do lote (ex: Pedido 01/04/2026)" },
+        "date": { "type": "string", "format": "date-time", "description": "Data de criação do lote" },
+        "status": { "type": "string", "enum": ["Aberto", "Enviado", "Finalizado"], "description": "Status do lote" }
+      },
+      "required": ["name", "date", "status"]
+    },
+    "Order": {
+      "title": "Pedido de Camisa",
+      "description": "Informações detalhadas de um pedido de camisa de futebol.",
+      "type": "object",
+      "properties": {
+        "shirtName": { "type": "string", "description": "Nome ou descrição da camisa" },
+        "size": { "type": "string", "description": "Tamanho (P, M, G, GG, etc.)" },
+        "personalization": { "type": "string", "description": "Detalhes da personalização (nome, número)" },
+        "clientName": { "type": "string", "description": "Nome do cliente" },
+        "photoUrl": { "type": "string", "description": "URL da foto da camisa" },
+        "date": { "type": "string", "format": "date-time", "description": "Data do pedido" },
+        "status": { "type": "string", "enum": ["Pendente", "Enviado ao fornecedor", "Recebido"], "description": "Status do pedido" },
+        "batchId": { "type": "string", "description": "ID do lote ao qual o pedido pertence" },
+        "price": { "type": "number", "description": "Preço de venda (opcional)" },
+        "cost": { "type": "number", "description": "Custo do fornecedor (opcional)" }
+      },
+      "required": ["shirtName", "size", "clientName", "date", "status", "batchId"]
+    }
+  },
+  "firestore": {
+    "/batches/{batchId}": {
+      "schema": "Batch",
+      "description": "Coleção de lotes de envio."
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Coleção de pedidos individuais."
+    }
+  }
+}
