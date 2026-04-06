@@ -11,18 +11,28 @@ service cloud.firestore {
     //   - date: timestamp (required) - Creation date
     //   - status: string (required) - Status (Aberto, Enviado, Finalizado)
     //   - ownerId: string (required) - UID of the creator
+    //   - taxAmount: number (optional) - Tax amount
+    //   - dollarRate: number (optional) - Dollar rate
+    //   - trackingCode: string (optional) - Tracking code
     //
     // Collection: orders
     // Fields:
     //   - shirtName: string (required) - Shirt description
+    //   - model: string (required) - Shirt model
     //   - size: string (required) - Size
     //   - personalization: string (optional) - Customization details
     //   - clientName: string (required) - Client name
     //   - photoUrl: string (optional) - Image URL
     //   - date: timestamp (required) - Order date
-    //   - status: string (required) - Status (Pendente, Enviado ao fornecedor, Recebido)
+    //   - status: string (required) - Status (Pendente, Enviado ao fornecedor, A caminho, Recebido)
     //   - batchId: string (required) - Reference to batch
     //   - ownerId: string (required) - UID of the creator
+    //   - priceUsd: number (required) - Cost in USD
+    //   - priceBrl: number (required) - Sale price in BRL
+    //   - isPaid: bool (required) - Payment status
+    //   - paidAmount: number (optional) - Amount paid
+    //   - isStock: bool (optional) - Stock item flag
+    //   - notes: string (optional) - Observations
     //
     // ===============================================================
 
@@ -47,7 +57,8 @@ service cloud.firestore {
              data.status in ['Aberto', 'Enviado', 'Finalizado'] &&
              data.ownerId == request.auth.uid &&
              (!('taxAmount' in data) || (data.taxAmount is number && data.taxAmount >= 0)) &&
-             (!('dollarRate' in data) || (data.dollarRate is number && data.dollarRate >= 0));
+             (!('dollarRate' in data) || (data.dollarRate is number && data.dollarRate >= 0)) &&
+             (!('trackingCode' in data) || (data.trackingCode is string && data.trackingCode.size() < 100));
     }
 
     function isValidOrder(data) {
@@ -57,7 +68,7 @@ service cloud.firestore {
              data.size is string && data.size.size() > 0 && data.size.size() < 20 &&
              data.clientName is string && data.clientName.size() > 0 && data.clientName.size() < 100 &&
              data.date is timestamp &&
-             data.status in ['Pendente', 'Enviado ao fornecedor', 'Recebido'] &&
+             data.status in ['Pendente', 'Enviado ao fornecedor', 'A caminho', 'Recebido'] &&
              data.batchId is string &&
              data.ownerId == request.auth.uid &&
              data.priceUsd is number && data.priceUsd >= 0 &&

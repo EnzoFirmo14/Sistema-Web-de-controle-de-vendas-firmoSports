@@ -1,20 +1,50 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Firmo Sports - Gestão de Pedidos ⚽📦
 
-# Run and deploy your AI Studio app
+Sistema profissional desenvolvido para a **Firmo Sports** para gerenciar pedidos de camisas de futebol, organizar lotes de envio e acompanhar a saúde financeira do negócio em tempo real.
 
-This contains everything you need to run your app locally.
+## ✨ Funcionalidades
 
-View your app in AI Studio: https://ai.studio/apps/eaf4587e-b015-4dcb-be07-4949ce920ce3
+- **Dashboard Inteligente:** Visualize o total de pedidos, valores recebidos, valores a receber e estatísticas de vendas (tamanhos e modelos mais pedidos).
+- **Gestão de Pedidos:** Cadastro completo de pedidos com fotos, personalização, status de pagamento e vínculo com lotes.
+- **Organização por Lotes:** Agrupe pedidos em lotes de envio, gerencie taxas de importação e cotação do dólar.
+- **Rastreamento Integrado:** Adicione códigos de rastreio aos lotes e acompanhe o status diretamente pelo sistema com links diretos para os Correios.
+- **Financeiro Detalhado:** Cálculo automático de lucro estimado por lote, considerando custos em dólar e taxas.
+- **Mobile First:** Interface totalmente responsiva e otimizada para uso em smartphones e tablets, com navegação intuitiva.
+- **Autenticação Segura:** Login via Google integrado com Firebase Auth.
 
-## Run Locally
+## 🚀 Tecnologias Utilizadas
 
-**Prerequisites:**  Node.js
+- **React + TypeScript:** Interface moderna e robusta.
+- **Firebase:**
+  - **Firestore:** Banco de dados NoSQL em tempo real.
+  - **Authentication:** Login seguro via Google.
+- **Tailwind CSS:** Estilização moderna e responsiva.
+- **Lucide React:** Conjunto de ícones profissionais.
+- **Recharts:** Gráficos interativos para análise de dados.
+- **Vite:** Ferramenta de build de alta performance.
 
+## 🛠️ Configuração Local
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Clone o repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Configure o Firebase:
+   - Crie um projeto no console do Firebase.
+   - Ative o Firestore e o Google Auth.
+   - Adicione suas credenciais no arquivo `firebase-applet-config.json`.
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+## 📄 Licença
+
+Este projeto é de uso exclusivo da **Firmo Sports**.
+
+---
+Desenvolvido para otimizar a operação da Firmo Sports.

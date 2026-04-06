@@ -7,9 +7,13 @@
       "properties": {
         "name": { "type": "string", "description": "Nome do lote (ex: Pedido 01/04/2026)" },
         "date": { "type": "string", "format": "date-time", "description": "Data de criação do lote" },
-        "status": { "type": "string", "enum": ["Aberto", "Enviado", "Finalizado"], "description": "Status do lote" }
+        "status": { "type": "string", "enum": ["Aberto", "Enviado", "Finalizado"], "description": "Status do lote" },
+        "ownerId": { "type": "string", "description": "UID do criador do lote" },
+        "taxAmount": { "type": "number", "description": "Valor da taxa (opcional)" },
+        "dollarRate": { "type": "number", "description": "Cotação do dólar (opcional)" },
+        "trackingCode": { "type": "string", "description": "Código de rastreio (opcional)" }
       },
-      "required": ["name", "date", "status"]
+      "required": ["name", "date", "status", "ownerId"]
     },
     "Order": {
       "title": "Pedido de Camisa",
@@ -17,17 +21,23 @@
       "type": "object",
       "properties": {
         "shirtName": { "type": "string", "description": "Nome ou descrição da camisa" },
+        "model": { "type": "string", "description": "Modelo da camisa (Masculino, Feminino, etc.)" },
         "size": { "type": "string", "description": "Tamanho (P, M, G, GG, etc.)" },
         "personalization": { "type": "string", "description": "Detalhes da personalização (nome, número)" },
         "clientName": { "type": "string", "description": "Nome do cliente" },
         "photoUrl": { "type": "string", "description": "URL da foto da camisa" },
         "date": { "type": "string", "format": "date-time", "description": "Data do pedido" },
-        "status": { "type": "string", "enum": ["Pendente", "Enviado ao fornecedor", "Recebido"], "description": "Status do pedido" },
+        "status": { "type": "string", "enum": ["Pendente", "Enviado ao fornecedor", "A caminho", "Recebido"], "description": "Status do pedido" },
         "batchId": { "type": "string", "description": "ID do lote ao qual o pedido pertence" },
-        "price": { "type": "number", "description": "Preço de venda (opcional)" },
-        "cost": { "type": "number", "description": "Custo do fornecedor (opcional)" }
+        "ownerId": { "type": "string", "description": "UID do criador do pedido" },
+        "priceUsd": { "type": "number", "description": "Preço em dólar (custo)" },
+        "priceBrl": { "type": "number", "description": "Preço em real (venda)" },
+        "isPaid": { "type": "boolean", "description": "Se o pedido foi totalmente pago" },
+        "paidAmount": { "type": "number", "description": "Valor já pago pelo cliente" },
+        "isStock": { "type": "boolean", "description": "Se o pedido é para estoque" },
+        "notes": { "type": "string", "description": "Observações ou descontos" }
       },
-      "required": ["shirtName", "size", "clientName", "date", "status", "batchId"]
+      "required": ["shirtName", "model", "size", "clientName", "date", "status", "batchId", "ownerId", "priceUsd", "priceBrl", "isPaid"]
     }
   },
   "firestore": {
