@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# AI / Local tools
+.openclaude/
+.agents/
+.openclaude-profile.json
+.claude/
+claude.md
+
+# Vite
+vite.config.ts.timestamp-*.js
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.cache/
+.temp/
+tmp/
+
+# Firebase — sensitive configs (DO NOT commit)
+.firebase/
+firebase-applet-config.json
+firebase-blueprint.json
+service-account-key.json
+ai-studio-applet-webapp-fa7bc-firebase-adminsdk-*.json
+firestore.rules
+metadata.json
+skills-lock.json
+
+# Test / debug scripts
+*_test*.cjs
+check*.cjs
